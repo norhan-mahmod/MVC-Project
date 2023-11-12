@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Employee</h1>
+
+<br />
+<div class="row">
+    <div class="col-6">
+        @* we used enctype because upload file *@
+        <form asp-controller="Employee" asp-action="Create" enctype="multipart/form-data">
+
+            <partial name="PartialViews/CreateUpdatePartialView" />
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

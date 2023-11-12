@@ -1,0 +1,41 @@
+﻿@model EmployeeViewModel
+@{
+    var Departments = new SelectList(ViewBag.departments, "Id", "Name");
+}
+<div class="form-group">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" type="text" class="form-control" placeholder="Enter Name">
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Address"></label>
+    <input asp-for="Address" type="email" class="form-control" placeholder="Enter Email">
+    <span asp-validation-for="Address" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Salary"></label>
+    <input asp-for="Salary" type="number" class="form-control" placeholder="Enter Salary">
+    <span asp-validation-for="Salary" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="HireDate"></label>
+    <input asp-for="HireDate" type="date" class="form-control">
+    <span asp-validation-for="Salary" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DepartmentId" class="col-form-label"></label>
+    <select asp-for="DepartmentId" asp-items="Departments" class="form-control">
+        <option>--select Department--</option>
+    </select>
+    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Image"></label>
+    <input asp-for="Image" type="file" class="form-control">
+</div>
+<div class="form-check">
+    <input asp-for="IsActive" type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label asp-for="IsActive" class="form-check-label" for="exampleCheck1">Is Active</label>
+</div>
+<br />
+<a asp-controller="Employee" asp-action="Index" class="btn btn-secondary">Back To List</a>

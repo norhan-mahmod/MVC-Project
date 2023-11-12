@@ -1,0 +1,84 @@
+﻿@model List<EmployeeViewModel>
+@{
+    ViewData["Title"] = "Index";
+    var Departments = new SelectList(ViewBag.Departments, "Id", "Name");
+}
+
+<h1>Employees</h1>
+<br />
+<div class="row">
+    <div class="col-2">
+        <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+    </div>
+</div>
+<br />
+@if(Model.Count != 0)
+{
+    <div class="row">
+        <div class="col-6">
+            <form asp-controller="Employee" asp-action="Index">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input name="SearchValue" type="text" class="form-control " placeholder="Search">
+                    </div>
+                    <input type="submit" value="Search" class="btn btn-success col-2"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <form asp-controller="Employee" asp-action="Index">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <select asp-items="Departments" name="SearchByDepartment" class="form-control">
+                            <option>--select Department--</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="SearchByDepartment" class="btn btn-success col-3" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Salary</th>
+                <th>HireDate</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var emp in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Files/Images/@emp.ImageUrl" class="img-circle" height="40" width="40" alt="Employee Image">
+                    </td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Address</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.HireDate</td>
+                    <td>
+                        <a asp-controller="Employee" asp-action="Details" asp-route-id="@emp.Id" class="btn btn-success">Details</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employee" asp-action="Update" asp-route-id="@emp.Id" class="btn btn-warning">Update</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <h3>No Employees Found</h3>
+    </div>
+}

@@ -1,0 +1,14 @@
+﻿@model DepartmentViewModel
+
+<div class="form-group">
+    <label asp-for="Code"></label>
+    <input asp-for="Code" type="text" class="form-control" placeholder="Enter Code">
+    <span asp-validation-for="Code" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" type="text" class="form-control" placeholder="Enter Name">
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<br />
+<a asp-controller="Department" asp-action="Index" class="btn btn-success">Back To Department List</a>
